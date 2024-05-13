@@ -40,6 +40,7 @@ import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.OkHttpClient;
@@ -64,16 +65,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerAdapter recyclerAdapter;
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        FirebaseUser currentUser = auth.getCurrentUser();
-        if(currentUser == null){
-            Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
-            startActivity(intent);
-            finish();
-        }
-    }
+
 
 
     @Override
@@ -175,7 +167,12 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 }else{
-                    return;
+                    List<String> interestsList = new ArrayList<>();
+                    interestsList.add("no interests");
+                    recyclerView = findViewById(R.id.recyclerView);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+                    recyclerAdapter = new RecyclerAdapter(interestsList);
+                    recyclerView.setAdapter(recyclerAdapter);
                 }
             }
         });

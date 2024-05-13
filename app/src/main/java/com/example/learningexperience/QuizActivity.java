@@ -12,15 +12,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.lang.reflect.Array;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -39,6 +48,10 @@ public class QuizActivity extends AppCompatActivity {
     String answer1, answer2, answer3;
     Button submitButton;
     String correctAnswer1, correctAnswer2, correctAnswer3;
+    String[] answers3, answers2, answers1;
+    String firstQuestion, secondQuestion, thirdQuestion;
+
+    String userId;
 
 
     @Override
@@ -51,6 +64,10 @@ public class QuizActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        fAuth = FirebaseAuth.getInstance();
+        userId = fAuth.getUid();
+        fStore = FirebaseFirestore.getInstance();
 
         //get the selected interest from mainactivity
         Intent intent = getIntent();
@@ -107,9 +124,8 @@ public class QuizActivity extends AppCompatActivity {
                         List<QuizResponse.QuizItem> quizItems = quizResponse.getQuiz();
 
 
-
                         //set questions and answer options
-                        String firstQuestion = quizItems.get(0).getQuestion();
+                        firstQuestion = quizItems.get(0).getQuestion();
                         List<String> q1options= quizItems.get(0).getOptions();
                         q1option1.setText(q1options.get(0));
                         q1option2.setText(q1options.get(1));
@@ -132,8 +148,13 @@ public class QuizActivity extends AppCompatActivity {
                                 break;
                         }
 
+                        answers1 = new String[]{q1options.get(0), q1options.get(1), q1options.get(2)};
 
-                        String secondQuestion = quizItems.get(1).getQuestion();
+
+
+
+
+                        secondQuestion = quizItems.get(1).getQuestion();
                         List<String> q2options = quizItems.get(1).getOptions();
                         q2option1.setText(q2options.get(0));
                         q2option2.setText(q2options.get(1));
@@ -156,7 +177,9 @@ public class QuizActivity extends AppCompatActivity {
                                 break;
                         }
 
-                        String thirdQuestion = quizItems.get(2).getQuestion();
+                        answers2 = new String[]{q2options.get(0), q2options.get(1), q2options.get(2)};
+
+                        thirdQuestion = quizItems.get(2).getQuestion();
                         List<String> q3options = quizItems.get(2).getOptions();
                         q3option1.setText(q3options.get(0));
                         q3option2.setText(q3options.get(1));
@@ -178,6 +201,8 @@ public class QuizActivity extends AppCompatActivity {
                                 Log.d("Switch", "default");
                                 break;
                         }
+
+                        answers3 = new String[]{q3options.get(0), q3options.get(1), q3options.get(2)};
 
 
                         //set question descriptions
@@ -241,12 +266,57 @@ public class QuizActivity extends AppCompatActivity {
                 intent.putExtra("correctAnswer1", correctAnswer1);
                 intent.putExtra("correctAnswer2", correctAnswer2);
                 intent.putExtra("correctAnswer3", correctAnswer3);
+                intent.putExtra("firstQuestion", firstQuestion);
+                intent.putExtra("secondQuestion", secondQuestion);
+                intent.putExtra("thirdQuestion", thirdQuestion);
 
 
 
+                //create a Map for each question and add to firebase history array
 
-                startActivity(intent);
-                finish();
+                Map<String, Object> q1 = new HashMap<>();
+                q1.put("question", firstQuestion);
+                q1.put("answer1", answers1[0]);
+                q1.put("answer2", answers1[1]);
+                q1.put("answer3", answers1[2]);
+                q1.put("correctAnswer", correctAnswer1);
+                q1.put("userAnswer", answer1);
+
+                Map<String, Object> q2 = new HashMap<>();
+                q2.put("question", secondQuestion);
+                q2.put("answer1", answers2[0]);
+                q2.put("answer2", answers2[1]);
+                q2.put("answer3", answers2[2]);
+                q2.put("correctAnswer", correctAnswer2);
+                q2.put("userAnswer", answer2);
+
+                Map<String, Object> q3 = new HashMap<>();
+                q3.put("question", thirdQuestion);
+                q3.put("answer1", answers3[0]);
+                q3.put("answer2", answers3[1]);
+                q3.put("answer3", answers3[2]);
+                q3.put("correctAnswer", correctAnswer3);
+                q3.put("userAnswer", answer3);
+
+                fStore.collection("users").document(userId)
+                                .update("history", FieldValue.arrayUnion(q1, q2, q3))
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void unused) {
+
+                                                //remove interest from firestore
+                                                fStore.collection("users").document(userId)
+                                                                .update("interests", FieldValue.arrayRemove(interest));
+
+
+                                                startActivity(intent);
+                                            }
+                                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.e("Firestore", "Error updating history in Firestore");
+                            }
+                        });
             }
         });
     }

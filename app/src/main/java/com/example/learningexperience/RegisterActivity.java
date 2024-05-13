@@ -157,6 +157,9 @@ public class RegisterActivity extends AppCompatActivity {
                                 Map<String, Object> user = new HashMap<>();
                                 user.put("username", username);
                                 user.put("phone", phone);
+                                user.put("totalQuestionsAnswered", 0);
+                                user.put("totalCorrectAnswers", 0);
+                                user.put("totalIncorrectAnswers", 0);
 
                                 uploadImageToFirebase(imageUri);
 

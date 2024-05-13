@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -36,6 +37,43 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.taskNumber.setText("Generated Task " + (position + 1));
         holder.taskDescription.setText("This is a short quiz about " + item);
 
+        switch(item){
+            case "algorithms":
+                holder.taskLogo.setImageResource(R.drawable.quicksort_svgrepo_com);
+                break;
+            case "data structures":
+                holder.taskLogo.setImageResource(R.drawable.data_trends_svgrepo_com);
+                break;
+            case "web development":
+                holder.taskLogo.setImageResource(R.drawable.web_page_browser_window_svgrepo_com);
+                break;
+            case "testing":
+                holder.taskLogo.setImageResource(R.drawable.usability_testing_svgrepo_com);
+                break;
+            case "c++ development":
+                holder.taskLogo.setImageResource(R.drawable.c_program_icon);
+                break;
+            case "python development":
+                holder.taskLogo.setImageResource(R.drawable.python_svgrepo_com);
+                break;
+            case "chemistry":
+                holder.taskLogo.setImageResource(R.drawable.laboratory_test_icon);
+                break;
+            case "physics":
+                holder.taskLogo.setImageResource(R.drawable.science_atom_icon);
+                break;
+            case "biology":
+                holder.taskLogo.setImageResource(R.drawable.dna_svgrepo_com);
+                break;
+            case "engineering":
+                holder.taskLogo.setImageResource(R.drawable.engineering_wrench_svgrepo_com);
+                break;
+            default:
+                break;
+
+
+        }
+
     }
 
     @Override
@@ -47,12 +85,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         TextView taskNumber, taskDescription;
         ImageButton goToTaskButton;
+
+        ImageView taskLogo;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             taskNumber = itemView.findViewById(R.id.taskNumber);
             taskDescription = itemView.findViewById(R.id.taskDescription);
             goToTaskButton = itemView.findViewById(R.id.goToTaskButton);
+            taskLogo = itemView.findViewById(R.id.taskLogo);
+
 
             goToTaskButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -63,7 +105,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
                         Intent intent = new Intent(itemView.getContext(), QuizActivity.class);
                         intent.putExtra("interest", clickedInterest);
-
 
                         intent.putExtra("taskNumber", String.valueOf(position + 1));
                         itemView.getContext().startActivity(intent);

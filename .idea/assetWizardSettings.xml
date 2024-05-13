@@ -35,8 +35,8 @@
                           <map>
                             <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="fcfcfc" />
-                            <entry key="outputName" value="engineering_wrench_svgrepo_com" />
-                            <entry key="sourceFile" value="$PROJECT_DIR$/images/engineering-wrench-svgrepo-com.svg" />
+                            <entry key="outputName" value="quicksort_svgrepo_com" />
+                            <entry key="sourceFile" value="$PROJECT_DIR$/images/quicksort-svgrepo-com.svg" />
                           </map>
                         </option>
                       </PersistentState>
