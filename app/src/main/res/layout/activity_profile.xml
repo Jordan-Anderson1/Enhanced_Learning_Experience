@@ -11,17 +11,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/main_background"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_gravity="left"
+            android:layout_margin="20dp"
+            android:background="@drawable/card_background"
+            android:src="@drawable/return_up_back_svgrepo_com"
+            />
 
-
-            <ImageButton
-                android:layout_width="70dp"
-                android:layout_height="40dp"
-                android:src="@drawable/return_up_back_svgrepo_com"
-                android:background="@drawable/card_background"
-                android:layout_margin="20dp"
-                android:id="@+id/backButton"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
 
 
 
@@ -29,7 +35,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="8dp"
-            android:layout_margin="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             >
 
             <LinearLayout
@@ -51,7 +58,8 @@
                         android:text="username"
                         android:id="@+id/username"
                         android:textSize="30sp"
-                        android:textColor="@color/white"/>
+                        android:textColor="@color/white"
+                        android:textStyle="bold"/>
 
                     <TextView
                         android:layout_width="200dp"
@@ -66,21 +74,31 @@
                 <RelativeLayout
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:layout_gravity="center">
+                    android:layout_gravity="center"
+
+                    >
+
+                    <FrameLayout
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:background="@drawable/profile_image_shape"
+                        android:id="@+id/frameLayout"
+                        android:padding="5dp">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/profileImage"
-                        android:layout_gravity="center"
                         />
+
+                    </FrameLayout>
 
                     <ImageButton
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:src="@drawable/baseline_add_circle_outline_24"
-                        android:layout_alignRight="@+id/profileImage"
-                        android:layout_alignBottom="@+id/profileImage"
+                        android:layout_alignRight="@+id/frameLayout"
+                        android:layout_alignBottom="@+id/frameLayout"
                         android:layout_marginRight="5dp"
                         android:layout_marginBottom="5dp"
                         android:id="@+id/addProfileImage"
@@ -95,10 +113,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:columnCount="2"
-            android:padding="15sp"
+            android:padding="15dp"
             android:rowCount="2"
-            android:layout_weight="1"
-            android:layout_marginBottom="25dp"
+
+
             >
 
             <androidx.cardview.widget.CardView
@@ -117,14 +135,15 @@
                     android:padding="15dp">
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="120dp"
                         android:layout_height="wrap_content"
                         android:gravity="top|center"
                         android:text="Total Questions"
                         android:textColor="@color/white"
-                        android:textSize="30sp"
+                        android:textSize="24sp"
                         android:textStyle="bold"
-                        android:layout_weight="1"/>
+                        android:layout_gravity="center"
+                        />
 
 
                     <LinearLayout
@@ -180,9 +199,9 @@
                         android:gravity="top|center"
                         android:text="Correctly Answered"
                         android:textColor="@color/white"
-                        android:textSize="30sp"
+                        android:textSize="24sp"
                         android:textStyle="bold"
-                        android:layout_weight="1"/>
+                        />
 
 
                     <LinearLayout
@@ -214,106 +233,181 @@
 
             </androidx.cardview.widget.CardView>
 
+
+        </GridLayout>
+
+
+
+
+
+
+
+
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        app:cardCornerRadius="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_background"
+            android:padding="15dp">
+
             <androidx.cardview.widget.CardView
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_gravity="fill"
-                android:layout_margin="5sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 app:cardCornerRadius="8dp"
-                android:layout_width="0dp">
+                android:layout_marginBottom="15dp"
+                >
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/card_background"
-                    android:orientation="vertical"
-                    android:padding="15dp">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="7dp"
+                    android:background="#87F8F3">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/learning_machine_ai_icon"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="top|center"
-                        android:text="Incorrect Answers"
-                        android:textColor="@color/white"
-                        android:textSize="30sp"
-                        android:textStyle="bold"
-                        android:layout_weight="1"/>
-
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:text="Summarized by AI"
+                        android:textSize="14sp"
                         android:layout_gravity="center"
-                        android:layout_marginTop="30dp"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/baseline_clear_24" />
-
-                        <TextView
-                            android:id="@+id/totalIncorrectAnswersTextView"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="10"
-                            android:textColor="@color/white"
-                            android:textSize="40sp"
-                            android:textStyle="bold" />
-
-
-                    </LinearLayout>
-
-
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"/>
                 </LinearLayout>
 
 
             </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_gravity="fill"
-                android:layout_margin="5sp"
-                app:cardCornerRadius="8dp"
-                android:layout_width="0dp">
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="top|center"
+                    android:text="Incorrect Answers"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/card_background"
-                    android:orientation="vertical"
-                    android:padding="15dp">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/baseline_clear_24"
+                        tools:layout_editor_absoluteX="60dp"
+                        tools:layout_editor_absoluteY="79dp" />
 
                     <TextView
+                        android:id="@+id/totalIncorrectAnswersTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Your Summary"
+                        android:text="10"
                         android:textColor="@color/white"
-                        android:textSize="30sp"
+                        android:textSize="40sp"
                         android:textStyle="bold"
-                        android:layout_weight="1"
-                        android:gravity="top"/>
+                        tools:layout_editor_absoluteX="110dp"
+                        tools:layout_editor_absoluteY="96dp" />
 
-                    <ImageButton
-                        android:layout_width="100dp"
-                        android:layout_height="40dp"
-                        android:id="@+id/goToTaskButton"
-                        android:background="@drawable/button_background"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp"
-                        android:paddingTop="3dp"
-                        android:paddingBottom="3dp"
-                        android:src="@drawable/baseline_arrow_circle_right_24"
-                        android:layout_gravity="center"/>
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
-        </GridLayout>
 
 
+
+            </LinearLayout>
+
+
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                >
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Review your mistakes"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:gravity="center|top"
+                    android:layout_weight="1"
+                    />
+
+
+                <ImageButton
+                    android:id="@+id/goToHistoryButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/button_background"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="3dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="3dp"
+                    android:src="@drawable/baseline_arrow_circle_right_24"
+                    tools:layout_editor_absoluteX="321dp"
+                    tools:layout_editor_absoluteY="89dp" />
+
+            </LinearLayout>
+        </LinearLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
 
         <Button
             android:layout_width="match_parent"
@@ -327,18 +421,8 @@
             android:textSize="24sp"
             android:textStyle="bold"
             android:drawableEnd="@drawable/share_2_svgrepo_com"
-            >
-
-
-
-        </Button>
-
-
-
-
-
+            />
 
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

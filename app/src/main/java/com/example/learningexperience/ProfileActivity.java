@@ -33,7 +33,7 @@ import com.squareup.picasso.Picasso;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    ImageButton backButton, addProfileImageButton;
+    ImageButton backButton, addProfileImageButton, goToHistoryButton;
 
     TextView usernameTextView, emailAddressTextView, totalQuestionsAnsweredTextView, totalIncorrectAnswersTextView, totalCorrectAnswersTextView;
 
@@ -65,16 +65,17 @@ public class ProfileActivity extends AppCompatActivity {
         totalCorrectAnswersTextView = findViewById(R.id.totalCorrectAnswersTextView);
         profileImage = findViewById(R.id.profileImage);
         addProfileImageButton = findViewById(R.id.addProfileImage);
+        goToHistoryButton = findViewById(R.id.goToHistoryButton);
 
         fStore = FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
         userId = fAuth.getUid();
 
         //get user Email address and set emailAddressTextView
-        if(fUser != null) {
-            String emailAddress = fUser.getEmail();
-            emailAddressTextView.setText(emailAddress);
-        }
+        fUser = fAuth.getCurrentUser();
+        String emailAddress = fUser.getEmail();
+        emailAddressTextView.setText(emailAddress);
+
 
         //get profile image from fStore and set profile image if successful. Set to default if unsuccessful
         storageReference = FirebaseStorage.getInstance().getReference();
@@ -137,6 +138,15 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent openGalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(openGalleryIntent, 1000);
+            }
+        });
+
+        //set on click listener to go to quiz history
+        goToHistoryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileActivity.this, HistoryActivity.class);
+                startActivity(intent);
             }
         });
     }
