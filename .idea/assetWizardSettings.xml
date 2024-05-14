@@ -23,7 +23,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:$USER_HOME$/Library/Android/sdk/icons/material/materialicons/add_circle_outline/baseline_add_circle_outline_24.xml" />
+                                      <entry key="url" value="file:$USER_HOME$/Library/Android/sdk/icons/material/materialicons/clear/baseline_clear_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -35,8 +35,8 @@
                           <map>
                             <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="fcfcfc" />
-                            <entry key="outputName" value="quicksort_svgrepo_com" />
-                            <entry key="sourceFile" value="$PROJECT_DIR$/images/quicksort-svgrepo-com.svg" />
+                            <entry key="outputName" value="share_2_svgrepo_com" />
+                            <entry key="sourceFile" value="$PROJECT_DIR$/images/share-2-svgrepo-com.svg" />
                           </map>
                         </option>
                       </PersistentState>
