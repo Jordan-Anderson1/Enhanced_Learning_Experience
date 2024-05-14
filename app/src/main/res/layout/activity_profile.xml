@@ -13,19 +13,17 @@
         android:background="@drawable/main_background"
         android:orientation="vertical">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="8dp"
-            android:layout_margin="20dp">
+
 
             <ImageButton
                 android:layout_width="70dp"
                 android:layout_height="40dp"
                 android:src="@drawable/return_up_back_svgrepo_com"
-                android:background="@drawable/card_background"/>
+                android:background="@drawable/card_background"
+                android:layout_margin="20dp"
+                android:id="@+id/backButton"/>
 
-        </androidx.cardview.widget.CardView>
+
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -118,11 +116,12 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
+                        android:gravity="top|center"
                         android:text="Total Questions"
                         android:textColor="@color/white"
                         android:textSize="30sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:layout_weight="1"/>
 
 
                     <LinearLayout
@@ -139,13 +138,14 @@
                             android:src="@drawable/baseline_menu_book_24" />
 
                         <TextView
-                            android:id="@+id/totalQuestionsAnswered"
+                            android:id="@+id/totalQuestionsAnsweredTextView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="10"
                             android:textColor="@color/white"
                             android:textSize="40sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            />
 
 
                     </LinearLayout>
@@ -174,11 +174,12 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
+                        android:gravity="top|center"
                         android:text="Correctly Answered"
                         android:textColor="@color/white"
                         android:textSize="30sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:layout_weight="1"/>
 
 
                     <LinearLayout
@@ -198,7 +199,7 @@
                             />
 
                         <TextView
-                            android:id="@+id/totalCorrectAnswers"
+                            android:id="@+id/totalCorrectAnswersTextView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="10"
@@ -228,11 +229,12 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
+                        android:gravity="top|center"
                         android:text="Incorrect Answers"
                         android:textColor="@color/white"
                         android:textSize="30sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:layout_weight="1"/>
 
 
                     <LinearLayout
@@ -249,7 +251,7 @@
                             android:src="@drawable/baseline_clear_24" />
 
                         <TextView
-                            android:id="@+id/totalIncorrectAnswers"
+                            android:id="@+id/totalIncorrectAnswersTextView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="10"

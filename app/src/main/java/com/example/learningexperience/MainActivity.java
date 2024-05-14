@@ -103,6 +103,11 @@ public class MainActivity extends AppCompatActivity {
             public void onSuccess(Uri uri) {
                 Picasso.get().load(uri).into(profileImage);
             }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                profileImage.setImageResource(R.drawable.baseline_person_24);
+            }
         });
 
         //get username
@@ -148,7 +153,6 @@ public class MainActivity extends AppCompatActivity {
 
                         //add interests to a list and display
                         List<String> interestsList = (List<String>) document.get("interests");
-                        Log.d("interests", interestsList.get(0));
                         recyclerView = findViewById(R.id.recyclerView);
                         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
                         recyclerAdapter = new RecyclerAdapter(interestsList);
@@ -174,6 +178,15 @@ public class MainActivity extends AppCompatActivity {
                     recyclerAdapter = new RecyclerAdapter(interestsList);
                     recyclerView.setAdapter(recyclerAdapter);
                 }
+            }
+        });
+
+        //set On click listener for profile image which takes user to profile page
+        profileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(intent);
             }
         });
 
