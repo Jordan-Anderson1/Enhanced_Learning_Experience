@@ -55,7 +55,7 @@ public class HistoryActivity extends AppCompatActivity {
 
         backButton = findViewById(R.id.backButton);
 
-        //get data from firestore and add to a List
+        //get data from firestore and add to a List. Initialise recycler/adapter onSuccess
         fStore.collection("users").document(userId).get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
@@ -89,6 +89,8 @@ public class HistoryActivity extends AppCompatActivity {
                     }
                 });
 
+
+        //Go back to profile activity
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

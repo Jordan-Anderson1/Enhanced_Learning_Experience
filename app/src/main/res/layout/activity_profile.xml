@@ -421,6 +421,7 @@
             android:textSize="24sp"
             android:textStyle="bold"
             android:drawableEnd="@drawable/share_2_svgrepo_com"
+            android:id="@+id/shareButton"
             />
 
     </LinearLayout>

@@ -34,6 +34,7 @@ import com.squareup.picasso.Picasso;
 public class ProfileActivity extends AppCompatActivity {
 
     ImageButton backButton, addProfileImageButton, goToHistoryButton;
+    Button shareButton;
 
     TextView usernameTextView, emailAddressTextView, totalQuestionsAnsweredTextView, totalIncorrectAnswersTextView, totalCorrectAnswersTextView;
 
@@ -44,6 +45,7 @@ public class ProfileActivity extends AppCompatActivity {
     ImageView profileImage;
     StorageReference storageReference;
     Uri imageUri;
+    String username;
 
 
     @Override
@@ -66,6 +68,7 @@ public class ProfileActivity extends AppCompatActivity {
         profileImage = findViewById(R.id.profileImage);
         addProfileImageButton = findViewById(R.id.addProfileImage);
         goToHistoryButton = findViewById(R.id.goToHistoryButton);
+        shareButton = findViewById(R.id.shareButton);
 
         fStore = FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
@@ -101,7 +104,7 @@ public class ProfileActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        String username;
+
                         int totalQuestionsAnswered, totalIncorrectAnswers, totalCorrectAnswers;
 
                         username = documentSnapshot.getString("username");
@@ -147,6 +150,19 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ProfileActivity.this, HistoryActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        //set onclick listener to share profile
+        shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                String body = "Join " + username + " on the Learning Experiences app and view their " +
+                        "stats! Click here to download: https://play.google.com/LearningExperiencesApp";
+                intent.putExtra(Intent.EXTRA_TEXT, body);
+                startActivity(Intent.createChooser(intent, "Share"));
             }
         });
     }
