@@ -16,6 +16,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -35,6 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     ImageButton backButton, addProfileImageButton, goToHistoryButton;
     Button shareButton;
+    CardView upgradeCardView;
 
     TextView usernameTextView, emailAddressTextView, totalQuestionsAnsweredTextView, totalIncorrectAnswersTextView, totalCorrectAnswersTextView;
 
@@ -69,6 +71,7 @@ public class ProfileActivity extends AppCompatActivity {
         addProfileImageButton = findViewById(R.id.addProfileImage);
         goToHistoryButton = findViewById(R.id.goToHistoryButton);
         shareButton = findViewById(R.id.shareButton);
+        upgradeCardView = findViewById(R.id.upgradeCardView);
 
         fStore = FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
@@ -163,6 +166,16 @@ public class ProfileActivity extends AppCompatActivity {
                         "stats! Click here to download: https://play.google.com/LearningExperiencesApp";
                 intent.putExtra(Intent.EXTRA_TEXT, body);
                 startActivity(Intent.createChooser(intent, "Share"));
+            }
+        });
+
+
+        //Set on click listener to go to upgradeActivity
+        upgradeCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileActivity.this, UpgradeActivity.class);
+                startActivity(intent);
             }
         });
     }
