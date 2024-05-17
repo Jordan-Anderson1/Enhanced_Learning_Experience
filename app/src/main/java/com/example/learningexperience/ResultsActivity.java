@@ -1,6 +1,7 @@
 package com.example.learningexperience;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -40,9 +41,6 @@ public class ResultsActivity extends AppCompatActivity {
     Long totalQuestionsAnswered, totalCorrectAnswers, totalIncorrectAnswers;
 
     String firstQuestion, secondQuestion, thirdQuestion;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +85,27 @@ public class ResultsActivity extends AppCompatActivity {
         q2userAnswer.setText("Your answer: " + answer2);
         q3userAnswer.setText("Your answer: " + answer3);
 
+        //set colour of text
+        if(answer1.equals(correctAnswer1)){
+            q1userAnswer.setTextColor(Color.parseColor("#2BC031"));
+        }else{
+            q1userAnswer.setTextColor(Color.RED);
+        }
+
+        //set colour of text
+        if(answer2.equals(correctAnswer2)){
+            q2userAnswer.setTextColor(Color.parseColor("#2BC031"));
+        }else{
+            q2userAnswer.setTextColor(Color.RED);
+        }
+
+        //set colour of text
+        if(answer3.equals(correctAnswer3)){
+            q3userAnswer.setTextColor(Color.parseColor("#2BC031"));
+        }else{
+            q3userAnswer.setTextColor(Color.RED);
+        }
+
         q1correctAnswer.setText("Correct answer: " + correctAnswer1);
         q2correctAnswer.setText("Correct answer: " + correctAnswer2);
         q3correctAnswer.setText("Correct answer: " + correctAnswer3);
@@ -96,15 +115,6 @@ public class ResultsActivity extends AppCompatActivity {
         q3desc.setText(thirdQuestion);
 
         returnHomeButton = findViewById(R.id.returnHomeButton);
-
-
-
-
-
-
-
-
-
 
 
         //query firestore and update answers correct etc.
@@ -155,10 +165,6 @@ public class ResultsActivity extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(Void unused) {
                                         Log.d("Firebase", "Great success");
-
-
-
-
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
@@ -174,10 +180,6 @@ public class ResultsActivity extends AppCompatActivity {
                         Log.d("Firebase", "Unable to retrieve documents in ResultsActivity");
                     }
                 });
-
-
-
-
 
         returnHomeButton.setOnClickListener(new View.OnClickListener() {
             @Override

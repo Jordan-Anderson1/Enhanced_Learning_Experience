@@ -18,7 +18,6 @@
             android:id="@+id/backButton"
             android:layout_width="70dp"
             android:layout_height="40dp"
-            android:layout_gravity="left"
             android:layout_margin="20dp"
             android:background="@drawable/card_background"
             android:src="@drawable/return_up_back_svgrepo_com"
@@ -116,29 +115,24 @@
 
                     >
 
-                    <FrameLayout
-                        android:layout_width="200dp"
-                        android:layout_height="200dp"
-                        android:background="@drawable/profile_image_shape"
-                        android:id="@+id/frameLayout"
-                        android:padding="5dp">
+
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/profileImage"
+                        android:background="@drawable/profile_image_shape"
                         />
 
-                    </FrameLayout>
+
 
                     <ImageButton
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:src="@drawable/baseline_add_circle_outline_24"
-                        android:layout_alignRight="@+id/frameLayout"
-                        android:layout_alignBottom="@+id/frameLayout"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginBottom="5dp"
+                        android:layout_alignRight="@+id/profileImage"
+                        android:layout_alignBottom="@+id/profileImage"
+
                         android:id="@+id/addProfileImage"
                         />
 
@@ -360,6 +354,7 @@
                     android:textColor="@color/white"
                     android:textSize="24sp"
                     android:textStyle="bold"
+                    android:layout_marginRight="10dp"
                     />
 
                 <LinearLayout
@@ -384,7 +379,8 @@
                         android:textSize="40sp"
                         android:textStyle="bold"
                         tools:layout_editor_absoluteX="110dp"
-                        tools:layout_editor_absoluteY="96dp" />
+                        tools:layout_editor_absoluteY="96dp"
+                        android:layout_marginRight="25dp"/>
 
                 </LinearLayout>
 

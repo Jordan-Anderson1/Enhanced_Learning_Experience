@@ -109,7 +109,7 @@
                         android:id="@+id/questionOneDetails"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Question 1 details"
+
                         android:textColor="@color/white"
                         android:textSize="20sp"
                         android:layout_marginTop="5dp"
@@ -126,7 +126,6 @@
                             android:id="@+id/q1option1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="CheckBox"
                             android:textColor="@color/white"
                             android:textSize="20sp"/>
 
@@ -134,7 +133,6 @@
                             android:id="@+id/q1option2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="CheckBox"
                             android:textColor="@color/white"
                             android:textSize="20sp"/>
 
@@ -142,7 +140,6 @@
                             android:id="@+id/q1option3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="CheckBox"
                             android:textColor="@color/white"
                             android:textSize="20sp"/>
 
@@ -182,7 +179,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="20sp"
-                        android:text="Question 2 details"
                         android:textColor="@color/white"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"/>
@@ -199,15 +195,21 @@
                             android:id="@+id/q2option1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="CheckBox"
+                            android:backgroundTint="#FBFBFB"
+                            android:backgroundTintMode="src_over"
+                            android:outlineAmbientShadowColor="#FFFFFF"
+                            android:outlineSpotShadowColor="#FFFFFF"
+                            android:shadowColor="#FFFFFF"
                             android:textColor="@color/white"
-                            android:textSize="20sp"/>
+                            android:textColorHighlight="#FFFFFF"
+                            android:textColorHint="#FFFFFF"
+                            android:textColorLink="#FFFFFF"
+                            android:textSize="20sp" />
 
                         <RadioButton
                             android:id="@+id/q2option2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="CheckBox"
                             android:textColor="@color/white"
                             android:textSize="20sp"/>
 
@@ -215,7 +217,6 @@
                             android:id="@+id/q2option3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="CheckBox"
                             android:textColor="@color/white"
                             android:textSize="20sp"/>
 
@@ -253,7 +254,6 @@
                         android:id="@+id/questionThreeDetails"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Question 3 details"
                         android:textSize="20sp"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
@@ -271,7 +271,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
-                            android:text="q3option"
                             android:textSize="20sp"/>
 
                         <RadioButton
@@ -279,7 +278,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
-                            android:text="q3option"
                             android:textSize="20sp"/>
 
                         <RadioButton
@@ -287,7 +285,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
-                            android:text="q3option"
                             android:textSize="20sp"/>
                     </RadioGroup>
 
